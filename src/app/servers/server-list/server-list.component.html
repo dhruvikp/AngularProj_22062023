@@ -1,0 +1,20 @@
+<h2>:: Servers list ::</h2>
+
+<ul>
+
+    <li *ngFor="let server of servers" 
+    [ngStyle]="{backgroundColor:getColor(server.status)}"
+    [ngClass]="{online : server.status === 'Online'}"
+    >
+            {{server.name}} - {{server.status}} - {{server.id}}
+    </li>
+
+</ul>
+
+<button (click)="lock()">Lock</button>
+
+<!-- Event - Occurrance of something, when you click on this,
+    Emit an event
+
+    Bind that event in my parent component 
+-->

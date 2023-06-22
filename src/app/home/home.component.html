@@ -1,0 +1,39 @@
+<p>home works!</p>
+
+<!-- Give me access to this form object , and pass it in onSubmit method-->
+<form  (ngSubmit)="onSubmit()" #f="ngForm">
+<div id="user-data" ngModelGroup ="userData">
+    <label for="username">UserName</label>
+    <input type="text" id="username" ngModel name="username" required/> 
+
+    <button type="button" (click)="suggestUserName()">Suggest a username </button>
+
+    <div>
+        <label for="email">Mail</label>
+        <input type="email" id="email" ngModel name="email" required email #email="ngModel"/>
+        <span *ngIf="!email.valid && email.touched"> Please enter a valid value</span>
+    </div>
+    
+    <div>
+        <label for="secret">Secret Questions</label>
+        <select id="secret" name="secret" ngModel required>
+            <option value="pet">Your first Pet? </option>
+            <option value="teacher">Your first teacher?</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit"
+        [disabled]="!f.valid"
+        >Submit</button>
+    </div>
+</div>
+</form>
+
+<div *ngIf="submitted">
+    <h2>Your Entered fields: </h2>
+    <p>UserName: {{user.username | uppercase }}</p>
+    <p>Mail: {{user.email | lowercase}}</p>
+    <p>Secret Questions: {{user.secretQuestion | titlecase}}</p>
+
+    <p>User : {{user | json }}</p>
+</div>
